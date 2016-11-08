@@ -55,4 +55,25 @@ void drawGrid(int no_lines)
      line(space * i + border, height - border, space * i + border, border);
      line(border, space * i + border, width - border, space * i + border);
   }
+  
+  writeNumbers(no_lines, space);
+}
+
+void writeNumbers(int no_lines, float space)
+{
+   int label = -5;
+   
+   // Drawing the labels vertically
+   for(int i = 0; i < no_lines + 1; i++) 
+   {
+     text(label++, 10, space * i + no_lines);
+   }
+   
+   // And now horizontally
+   label = -5;
+   for(int i = 0; i < no_lines + 1; i++) 
+   {
+    text(label++, space * i + no_lines, 10);
+   }
+     
 }
