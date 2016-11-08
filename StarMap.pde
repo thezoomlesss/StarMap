@@ -107,3 +107,37 @@ void drawStars()
      text(One_star.DisplayName, x+10, y-2);
    }
 }
+Star First_click;
+Star Second_click;
+
+void mouseClicked()   // I needed more time so I could finish this...
+{
+  
+  for(int i=0; i<stars.size(); i++)
+  {
+    Star One_star = stars.get(i);
+    if((mouseX> One_star.Xg - 20) && (mouseX< One_star.Xg+20))  // implying that the size of the star is 20 
+    {
+      if((mouseY> One_star.Yg - 20) && (mouseY< One_star.Yg+20))
+      {
+        First_click=One_star;   // It means that we have a match
+      }
+    }
+  }
+}
+void mouseDragged()
+{
+  for(int i=0; i<stars.size(); i++)
+  {
+    Star One_star = stars.get(i);
+    if((mouseX> One_star.Xg - 20) && (mouseX< One_star.Xg+20))  // implying that the size of the star is 20 
+    {
+      if((mouseY> One_star.Yg - 20) && (mouseY< One_star.Yg+20))
+      {
+        Second_click=One_star;   // It means that we have a match
+      }
+    }
+  }
+  
+ // This doesn't work for some reason :( line((float)First_click.Xg, (float)First_click.Yg, (float)Second_click.Xg, (float)Second_click.Yg);
+}
