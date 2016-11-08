@@ -7,16 +7,6 @@ class Star
   float AbsMag;
   
   
-  // Default constructor
-  Star()
-  {
-    this.Hab = 0;
-    this.DisplayName="Default";
-    this.Distance=0;
-    this.Xg=this.Yg=this.Zg=0;
-    this.AbsMag=0;
-  }
-  
   // Paramaterised constructor
   Star(TableRow row)
   {
@@ -35,9 +25,4 @@ class Star
    {
      return Hab + "\t" + DisplayName + "\t" + Distance + "\t" + Xg + "\t" + Yg + "\t" + Zg + "\t" + AbsMag;
    }
-  
-  
-  
-  
-  
 }

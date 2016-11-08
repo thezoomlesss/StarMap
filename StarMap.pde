@@ -11,9 +11,11 @@ void setup()
   loadData();
   printStars();
   drawGrid(10);
+  drawStars();
 }
 
 ArrayList<Star> stars= new ArrayList<Star>();   // Declaring a global ArrayList of Star objects
+
 
 void draw()
 {
@@ -41,6 +43,8 @@ void printStars()
     println(One_star);
   }
 }
+
+
 
 
 void drawGrid(int no_lines)
@@ -76,4 +80,30 @@ void writeNumbers(int no_lines, float space)
     text(label++, space * i + no_lines, 10);
    }
      
+}
+
+void drawStars()
+{
+  int border=50;
+  
+   for (int i = 0; i < stars.size(); i++)
+   {
+     Star One_star = stars.get(i);
+     
+     float x = map (One_star.Xg, -5, 5, 50, width-border);
+     float y = map (One_star.Yg, -5, 5, 50, height-border);
+     stroke(255, 255, 0);
+     noFill();
+     
+     line (x, y, x+3, y);
+     line (x, y, x, y-3);
+     line (x, y, x-3, y);
+     line (x, y, x, y+3);
+     stroke(255, 0, 0);
+     ellipse(x, y, One_star.AbsMag, One_star.AbsMag);
+     
+     fill(255);
+     textAlign(LEFT, CENTER);
+     text(One_star.DisplayName, x+10, y-2);
+   }
 }
