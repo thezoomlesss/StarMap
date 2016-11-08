@@ -8,10 +8,10 @@ void setup()
 {
   size(800,800);
   loadData();
+  printStars();
 }
 
 ArrayList<Star> stars= new ArrayList<Star>();   // Declaring a global ArrayList of Star objects
-
 
 void draw()
 {
@@ -30,4 +30,13 @@ void loadData()
 
 }
   
+  
+void printStars()
+{
+  for(int i=0;i<stars.size(); i++)
+  {
+    Star One_star= stars.get(i);
+    println(One_star);
+  }
+}
 }
