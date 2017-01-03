@@ -3,7 +3,7 @@ class Star
   int Hab;
   String DisplayName;
   float Distance;
-  float Xg, Yg, Zg;
+  public float Xg, Yg, Zg;
   float AbsMag;
   
   

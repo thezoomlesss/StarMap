@@ -10,8 +10,7 @@ void setup()
   background(0);
   loadData();
   printStars();
-  drawGrid(10);
-  drawStars();
+  display();
 }
 
 ArrayList<Star> stars= new ArrayList<Star>();   // Declaring a global ArrayList of Star objects
@@ -22,6 +21,13 @@ void draw()
   
 }
 
+void display()
+{
+  
+  drawGrid(10);
+  drawStars();
+
+}
 void loadData()
 {
   StarTable = loadTable("HabHYG15ly.csv", "header");  
@@ -106,38 +112,64 @@ void drawStars()
      textAlign(LEFT, CENTER);
      text(One_star.DisplayName, x+10, y-2);
    }
+    
 }
 Star First_click;
 Star Second_click;
-
-void mouseClicked()   // I needed more time so I could finish this...
+int f,k,condition;
+void mousePressed()   // I needed more time so I could finish this...
 {
-  
-  for(int i=0; i<stars.size(); i++)
+  condition=0;
+  for(f=0; f<stars.size(); f++)
   {
-    Star One_star = stars.get(i);
-    if((mouseX> One_star.Xg - 20) && (mouseX< One_star.Xg+20))  // implying that the size of the star is 20 
+    Star One_star = stars.get(f);
+    float x = map (One_star.Xg, -5, 5, 50, width-50);
+    float y = map (One_star.Yg, -5, 5, 50, height-50);
+     
+    if((mouseX> x - 20) && (mouseX< x+20))  // implying that the size of the star is 20 
     {
-      if((mouseY> One_star.Yg - 20) && (mouseY< One_star.Yg+20))
+      if((mouseY> y - 20) && (mouseY< y+20))
       {
-        First_click=One_star;   // It means that we have a match
+        condition=1;
+        break;
+        //First_click=One_star;   // It means that we have a match
       }
     }
   }
 }
-void mouseDragged()
+void mouseReleased()
 {
-  for(int i=0; i<stars.size(); i++)
+  for(k=0; k<stars.size(); k++)
   {
-    Star One_star = stars.get(i);
-    if((mouseX> One_star.Xg - 20) && (mouseX< One_star.Xg+20))  // implying that the size of the star is 20 
+    Star One_star = stars.get(k);
+    float x = map (One_star.Xg, -5, 5, 50, width-50);
+    float y = map (One_star.Yg, -5, 5, 50, height-50);
+    
+    if((mouseX> x - 20) && (mouseX< x+20))  // implying that the size of the star is 20 
     {
-      if((mouseY> One_star.Yg - 20) && (mouseY< One_star.Yg+20))
+      if((mouseY> y - 20) && (mouseY< y+20))
       {
-        Second_click=One_star;   // It means that we have a match
+        condition=1;
+        break;
+        //Second_click=One_star;   // It means that we have a match
       }
+      else
+      {
+        condition=0;
+      }
+    }
+    else
+    {
+      condition=0;
     }
   }
   
  // This doesn't work for some reason :( line((float)First_click.Xg, (float)First_click.Yg, (float)Second_click.Xg, (float)Second_click.Yg);
+ if(condition==1)
+    {
+      background(0);
+      display();
+      stroke(255,100,0);
+      line(map (stars.get(f).Xg, -5, 5, 50, width-50), map (stars.get(f).Yg, -5, 5, 50, height-50), map (stars.get(k).Xg, -5, 5, 50, width-50), map (stars.get(k).Yg, -5, 5, 50, height-50));
+    }
 }
